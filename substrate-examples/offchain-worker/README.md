@@ -71,12 +71,14 @@ the warning is not generated.
 
 > When reproducing the examples, make sure to run `cargo clean` after changing the [.cargo/config.toml](.cargo/config.toml).
 
-- One specific piece of code leads (see line 745 in `src/lib.rs`) to a crash in MIRAI. This happens only on the `devvirtualbox` test machine and could not be reproduced on the second system.
+- The issues described here occurred on the `devvirtualbox` test machine. Also see [Test machine specifications](../README.md#test-machines)
+
+- One specific piece of code leads (see line 745 in `src/lib.rs`) to a crash in MIRAI. This could not be reproduced on the `devsgx02` test machine.
 ![MIRAI_CRASH_CODE](mirai-crash-code.png)
 
 - For more complex scenarios timeouts arise within MIRAI. 
-  - For example with an empty `config.toml` file. See the `README.md` of `pallet_template` regarding this.
-  - Increasing the `body_analysis_timeout` parameter lead to crashes in some cases in MIRAI on the `devvirtualbox` test machine.
+  - For example with an empty [.cargo/config.toml](.cargo/config.toml) file. See [../pallet_template/README.md](../pallet_template/README.md) for more information regarding this.
+  - Increasing the `body_analysis_timeout` parameter lead to MIRAI crashes in some cases.
 
 - There are a variety of other warnings raised from code in other crates. This is confusing for the user. For example:
 ```
@@ -90,8 +92,7 @@ note: related location
 ...
 ```
 
-- There are warnings regarding missing MIR bodys. This can be seen like this:
-Enable the second line and diable the first in [.cargo/config.toml](.cargo/config.toml) to:
+- There are warnings regarding missing MIR bodys. To see this enable the third line and disable the second in [.cargo/config.toml](.cargo/config.toml):
   ``` toml
   [env]
   #MIRAI_FLAGS = { value = "--diag=paranoid --single_func=pallet_example_offchain_worker.mirai.mirai_check.code_to_analyze"}
@@ -107,7 +108,7 @@ Enable the second line and diable the first in [.cargo/config.toml](.cargo/confi
   ```
   [0u]: &("internal error: entered unreachable code: /!\\ `LevelFilter` representation seems to have changed! /!\\ \nThis is a bug (and it's pretty bad). Please contact the `tracing` maintainers. Thank you and I'm sorry.\n The offending repr was: ")
   ```
-  This can be seen by setting the log level in MIRAI to `debug` in the `config.toml`
+  This can be seen by setting the log level in MIRAI to `debug` in the  [.cargo/config.toml](.cargo/config.toml)
   ``` toml
   [env]
   #MIRAI_FLAGS = { value = "--diag=paranoid --single_func=pallet_example_offchain_worker.mirai.mirai_check.code_to_analyze"}

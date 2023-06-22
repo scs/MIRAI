@@ -5,8 +5,6 @@ pub mod mirai_check {
     use crate::Pallet;
     use crate::tests::Test;
     use crate::SubmitTransaction;
-    use frame_system::offchain::Signer;
-    use frame_system::offchain::SendUnsignedTransaction;
 
     pub fn code_to_analyze(block_number: u64, price: u32) {
         let call: crate::Call<Test> = crate::Call::submit_price_unsigned {

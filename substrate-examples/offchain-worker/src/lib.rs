@@ -286,7 +286,6 @@ pub mod pallet {
             _block_number: T::BlockNumber,
             price: u32,
         ) -> DispatchResultWithPostInfo {
-            precondition!(false);
             // This ensures that the function can only be called via unsigned transaction.
             ensure_none(origin)?;
             // Add the price to the on-chain list, but mark it as coming from an empty address.

@@ -20,7 +20,7 @@ For each vulnerability class, we implemented prototype code to show, how the vul
 * [Unsigned Transactions](offchain-worker/README.md)
 
 #### Test machines
-The code was tested on two different machines. We list them here because they do not always show the same behaviour during our tests. We assume this is mostly due to their performance capabilities and available memory.
+The code was tested on two different machines. Most of the tests were done with `devsgx02` but we list their specifications here because they did not always show the same behaviour during our tests. We assume this is mostly due to their performance capabilities and available memory.
 
 `devsgx02`:
 ```

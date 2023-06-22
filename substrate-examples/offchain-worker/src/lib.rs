@@ -279,6 +279,8 @@ pub mod pallet {
         /// purpose is to showcase offchain worker capabilities.
         #[pallet::call_index(1)]
         #[pallet::weight({0})]
+        #[requires(has_tag!(&_block_number, ParameterVerified))]
+        #[requires(has_tag!(&price, ParameterVerified))]
         pub fn submit_price_unsigned(
             origin: OriginFor<T>,
             _block_number: T::BlockNumber,
@@ -741,11 +743,10 @@ impl<T: Config> Pallet<T> {
         // Note this doesn't make much sense when building an actual oracle, but this example
         // is here mostly to show off offchain workers capabilities, not about building an
         // oracle.
-        // For some reason MIRAI crashes with this code
-        /*let avg_price = Self::average_price()
+        // For some reason MIRAI crashes with this code on one of the test machines
+        let avg_price = Self::average_price()
             .map(|price| if &price > new_price { price - new_price } else { new_price - price })
-            .unwrap_or(0);*/
-        let avg_price = 0;
+            .unwrap_or(0);
 
         ValidTransaction::with_tag_prefix("ExampleOffchainWorker")
             // We set base priority to 2**20 and hope it's included before any other

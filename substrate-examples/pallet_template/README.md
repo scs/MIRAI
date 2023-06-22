@@ -50,6 +50,9 @@ This warning is not shown, when we use the wrapper function `sarp_ensure_signed`
 
 > When reproducing the examples, make sure to run `cargo clean` after changing the [.cargo/config.toml](.cargo/config.toml).
 
+The issues described here occurred on the `devsgx02` test machine. Also see [Test machine specifications](../README.md#test-machines)
+
+
 - There seems to be an issue, with **nesting `precondition!` and `verify!` inside functions**. Although the problem could not be reproduced with the examples from the MIRAI repository. When nested inside a function we have to set `--diag=paranoid`, whereas when they are not nested a `--diag=verify` is sufficient (and results in much fewer warnings).
 
   To reproduce this, change the [.cargo/config.toml](.cargo/config.toml) to:

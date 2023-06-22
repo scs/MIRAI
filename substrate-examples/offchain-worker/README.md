@@ -71,26 +71,22 @@ the warning is not generated.
 
 > When reproducing the examples, make sure to run `cargo clean` after changing the [.cargo/config.toml](.cargo/config.toml).
 
-- The issues described here occurred on the `devvirtualbox` test machine. Also see [Test machine specifications](../README.md#test-machines)
+The issues described here occurred on the `devvirtualbox` test machine. Also see [Test machine specifications](../README.md#test-machines)
 
 - One specific piece of code leads (see line 745 in `src/lib.rs`) to a crash in MIRAI. This could not be reproduced on the `devsgx02` test machine.
 ![MIRAI_CRASH_CODE](mirai-crash-code.png)
 
-- For more complex scenarios timeouts arise within MIRAI. 
-  - For example with an empty [.cargo/config.toml](.cargo/config.toml) file. See [../pallet_template/README.md](../pallet_template/README.md) for more information regarding this.
-  - Increasing the `body_analysis_timeout` parameter lead to MIRAI crashes in some cases.
-
 - There are a variety of other warnings raised from code in other crates. This is confusing for the user. For example:
-```
-warning: possible incomplete analysis of call because of a nested call to a function without a MIR body
-   --> /home/tniederberger/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/dispatcher.rs:402:29
-    |
-402 |         .unwrap_or_else(|_| f(&NONE))
-    |                             ^^^^^^^^
-    |
-note: related location
-...
-```
+  ```
+  warning: possible incomplete analysis of call because of a nested call to a function without a MIR body
+     --> /home/tniederberger/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/dispatcher.rs:402:29
+      |
+  402 |         .unwrap_or_else(|_| f(&NONE))
+      |                             ^^^^^^^^
+      |
+  note: related location
+  ...
+  ```
 
 - There are warnings regarding missing MIR bodys. To see this enable the third line and disable the second in [.cargo/config.toml](.cargo/config.toml):
   ``` toml

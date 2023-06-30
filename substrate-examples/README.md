@@ -53,3 +53,8 @@ The research showed three main problems:
 With this first research project we could not completely determine the feasibility of the approach. To our current knowledge, the following points must be analyzed first:
 1. Running the analysis only on the newly written pallet code - without the substrate macros. This should significantly reduce the complexity of the analysis. It should be possible to achieve this, by working out a software design, that separates the two.
 2. It is currently unclear if all failures we observed result from the complexity of the code or from bugs within MIRAI. This needs further analysis.
+
+### Next Steps
+We see two main tasks as next steps:
+1. Work out a minimal invasive software design to implement a tag analysis.
+1. Analyze timeouts and crashes in MIRAI. Possibly they can be resolved by bugfixes in MIRAI. If not, we need to find workarounds.

@@ -99,12 +99,12 @@ pub mod pallet {
         #[pallet::weight(T::WeightInfo::do_something())]
         pub fn do_something(origin: OriginFor<T>, something: u32) -> DispatchResult {
             // switch between the next two lines to either get a precondition failure in sarp_put_sensitive_value or not
-            let who = Self::sarp_ensure_signed(&origin)?;
-            // let who = ensure_signed(origin.clone())?;
+            // let who = Self::sarp_ensure_signed(&origin)?;
+            let who = ensure_signed(origin.clone())?;
 
             Self::sarp_put_sensitive_value(&origin, something)?;
 
-            Self::deposit_event(Event::SomethingStored { something, who });
+            // Self::deposit_event(Event::SomethingStored { something, who });
             Ok(())
         }
 
@@ -130,6 +130,18 @@ pub mod pallet {
     }
 
     impl<T: Config> Pallet<T> {
+
+        pub fn do_something_without_macro(origin: OriginFor<T>, something: u32) -> DispatchResult {
+            // switch between the next two lines to either get a precondition failure in sarp_put_sensitive_value or not
+            // let who = Self::sarp_ensure_signed(&origin)?;
+            let who = ensure_signed(origin.clone())?;
+
+            Self::sarp_put_sensitive_value(&origin, something)?;
+
+            // Self::deposit_event(Event::SomethingStored { something, who });
+            Ok(())
+        }
+
         fn sarp_ensure_signed(origin: &OriginFor<T>) -> Result<T::AccountId, BadOrigin> {
             add_tag!(origin, SecretTaint);
             ensure_signed(origin.clone())
@@ -137,7 +149,7 @@ pub mod pallet {
 
         fn sarp_put_sensitive_value(origin: &OriginFor<T>, something: u32) -> DispatchResult {
             precondition!(has_tag!(origin, SecretTaint));
-            <Something<T>>::put(something);
+            // <Something<T>>::put(something);
             Ok(())
         }
     }

@@ -1,0 +1,13 @@
+{
+  "call_sites_output_path": "/home/sproll/work/sarp/substrate-examples/pallet_template/call_graph/call_sites.json",
+  "dot_output_path": "/home/sproll/work/sarp/substrate-examples/pallet_template/call_graph/graph.dot",
+  "reductions": [
+  ],
+  "included_crates": [
+  ],
+  "datalog_config": {
+    "ddlog_output_path": "/home/sproll/work/sarp/substrate-examples/pallet_template/call_graph/graph.dat",
+    "type_map_output_path": "/home/sproll/work/sarp/substrate-examples/pallet_template/call_graph/types.json",
+    "datalog_backend": "DifferentialDatalog"
+  }
+}

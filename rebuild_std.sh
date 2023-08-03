@@ -15,7 +15,7 @@ cargo build
 touch standard_contracts/src/lib.rs
 cargo build --lib -p mirai-standard-contracts
 touch standard_contracts/src/lib.rs
-RUSTC_WRAPPER=target/debug/mirai RUST_BACKTRACE=1 MIRAI_LOG=warn MIRAI_START_FRESH=true MIRAI_SHARE_PERSISTENT_STORE=true MIRAI_FLAGS="--diag=paranoid" cargo build --lib -p mirai-standard-contracts
+RUSTC_WRAPPER=target/debug/mirai RUST_BACKTRACE=1 MIRAI_LOG=warn MIRAI_SHARE_PERSISTENT_STORE=true MIRAI_FLAGS="--diag=paranoid" cargo build --lib -p mirai-standard-contracts
 
 # collect the summary store into a tar file
 cd target/debug/deps

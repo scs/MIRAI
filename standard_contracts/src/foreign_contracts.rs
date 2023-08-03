@@ -136,8 +136,8 @@ pub mod alloc {
 
     pub mod slice {
         pub fn merge_sort<T, F>(v: &mut [T], mut is_less: F)
-        where
-            F: FnMut(&T, &T) -> bool,
+            where
+                F: FnMut(&T, &T) -> bool,
         {
             //todo: havoc v
             //todo: provide a post condition once quantifiers are supported
@@ -251,8 +251,8 @@ pub mod core {
                 _self: T,
                 layout: std::alloc::Layout,
             ) -> Result<(std::ptr::NonNull<u8>, usize), core::alloc::AllocError>
-            where
-                T: std::alloc::Allocator,
+                where
+                    T: std::alloc::Allocator,
             {
                 unsafe {
                     let buf = std::alloc::alloc(layout);
@@ -264,8 +264,8 @@ pub mod core {
                 _self: T,
                 layout: std::alloc::Layout,
             ) -> Result<(std::ptr::NonNull<u8>, usize), core::alloc::AllocError>
-            where
-                T: std::alloc::Allocator,
+                where
+                    T: std::alloc::Allocator,
             {
                 unsafe {
                     let buf = std::alloc::alloc_zeroed(layout);
@@ -274,8 +274,8 @@ pub mod core {
             }
 
             pub fn dealloc<T>(_self: T, ptr: std::ptr::NonNull<u8>, layout: std::alloc::Layout)
-            where
-                T: std::alloc::Allocator,
+                where
+                    T: std::alloc::Allocator,
             {
                 unsafe {
                     std::alloc::dealloc(ptr.as_ptr(), layout);
@@ -288,8 +288,8 @@ pub mod core {
                 layout: std::alloc::Layout,
                 new_size: usize,
             ) -> Result<(std::ptr::NonNull<u8>, usize), core::alloc::AllocError>
-            where
-                T: std::alloc::Allocator,
+                where
+                    T: std::alloc::Allocator,
             {
                 unsafe {
                     let buf = std::alloc::realloc(ptr.as_ptr(), layout, new_size);
@@ -1235,6 +1235,92 @@ pub mod core {
             atomic_cxchg!(atomic_cxchg_seqcst_seqcst, usize);
             atomic_cxchg!(atomic_cxchg_seqcst_seqcst__i128, i128);
             atomic_cxchg!(atomic_cxchg_seqcst_seqcst__u128, u128);
+
+
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__i8, i8);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__i16, i16);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__i32, i32);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__i64, i64);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__isize, isize);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__u8, u8);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__u16, u16);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__u32, u32);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__u64, u64);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire, usize);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__i128, i128);
+            atomic_cxchg!(atomic_cxchg_relaxed_acquire__u128, u128);
+
+
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__i8, i8);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__i16, i16);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__i32, i32);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__i64, i64);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__isize, isize);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__u8, u8);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__u16, u16);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__u32, u32);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__u64, u64);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst, usize);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__i128, i128);
+            atomic_cxchg!(atomic_cxchg_relaxed_seqcst__u128, u128);
+
+
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__i8, i8);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__i16, i16);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__i32, i32);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__i64, i64);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__isize, isize);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__u8, u8);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__u16, u16);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__u32, u32);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__u64, u64);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst, usize);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__i128, i128);
+            atomic_cxchg!(atomic_cxchg_acquire_seqcst__u128, u128);
+
+
+            atomic_cxchg!(atomic_cxchg_release_acquire__i8, i8);
+            atomic_cxchg!(atomic_cxchg_release_acquire__i16, i16);
+            atomic_cxchg!(atomic_cxchg_release_acquire__i32, i32);
+            atomic_cxchg!(atomic_cxchg_release_acquire__i64, i64);
+            atomic_cxchg!(atomic_cxchg_release_acquire__isize, isize);
+            atomic_cxchg!(atomic_cxchg_release_acquire__u8, u8);
+            atomic_cxchg!(atomic_cxchg_release_acquire__u16, u16);
+            atomic_cxchg!(atomic_cxchg_release_acquire__u32, u32);
+            atomic_cxchg!(atomic_cxchg_release_acquire__u64, u64);
+            atomic_cxchg!(atomic_cxchg_release_acquire, usize);
+            atomic_cxchg!(atomic_cxchg_release_acquire__i128, i128);
+            atomic_cxchg!(atomic_cxchg_release_acquire__u128, u128);
+
+
+            atomic_cxchg!(atomic_cxchg_release_seqcst__i8, i8);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__i16, i16);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__i32, i32);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__i64, i64);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__isize, isize);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__u8, u8);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__u16, u16);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__u32, u32);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__u64, u64);
+            atomic_cxchg!(atomic_cxchg_release_seqcst, usize);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__i128, i128);
+            atomic_cxchg!(atomic_cxchg_release_seqcst__u128, u128);
+
+
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__i8, i8);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__i16, i16);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__i32, i32);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__i64, i64);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__isize, isize);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__u8, u8);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__u16, u16);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__u32, u32);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__u64, u64);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst, usize);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__i128, i128);
+            atomic_cxchg!(atomic_cxchg_acqrel_seqcst__u128, u128);
+
+
 
             // pub unsafe fn atomic_cxchg_acquire_acquire<T>(dst: *mut T, old: T, src: T) -> (T, bool) {
             //     if abstract_value!(true) {
@@ -3160,31 +3246,31 @@ pub mod core {
 
     pub mod isize {
         #[cfg(any(
-            target_arch = "x86",
-            target_arch = "mips",
-            target_arch = "mips",
-            target_arch = "powerpc",
-            target_arch = "arm"
+        target_arch = "x86",
+        target_arch = "mips",
+        target_arch = "mips",
+        target_arch = "powerpc",
+        target_arch = "arm"
         ))]
         pub const MAX: isize = 2147483647;
         #[cfg(any(
-            target_arch = "x86_64",
-            target_arch = "powerpc64",
-            target_arch = "aarch64"
+        target_arch = "x86_64",
+        target_arch = "powerpc64",
+        target_arch = "aarch64"
         ))]
         pub const MAX: isize = 9223372036854775807;
         #[cfg(any(
-            target_arch = "x86",
-            target_arch = "mips",
-            target_arch = "mips",
-            target_arch = "powerpc",
-            target_arch = "arm"
+        target_arch = "x86",
+        target_arch = "mips",
+        target_arch = "mips",
+        target_arch = "powerpc",
+        target_arch = "arm"
         ))]
         pub const MIN: isize = -2147483648;
         #[cfg(any(
-            target_arch = "x86_64",
-            target_arch = "powerpc64",
-            target_arch = "aarch64"
+        target_arch = "x86_64",
+        target_arch = "powerpc64",
+        target_arch = "aarch64"
         ))]
         pub const MIN: isize = -9223372036854775808;
     }
@@ -3766,8 +3852,8 @@ pub mod core {
         pub fn drop_in_place() {}
 
         pub unsafe fn swap<T>(x: *mut T, y: *mut T)
-        where
-            T: Copy,
+            where
+                T: Copy,
         {
             let t = *x;
             *x = *y;
@@ -3783,43 +3869,43 @@ pub mod core {
         }
 
         pub unsafe fn read<T>(src: *const T) -> T
-        where
-            T: Copy,
+            where
+                T: Copy,
         {
             *src
         }
 
         pub unsafe fn read_unaligned<T>(src: *const T) -> T
-        where
-            T: Copy,
+            where
+                T: Copy,
         {
             *src
         }
 
         pub unsafe fn read_volatile<T>(src: *const T) -> T
-        where
-            T: Copy,
+            where
+                T: Copy,
         {
             *src
         }
 
         pub unsafe fn write<T>(dst: *mut T, src: T)
-        where
-            T: Copy,
+            where
+                T: Copy,
         {
             *dst = src;
         }
 
         pub unsafe fn write_unaligned<T>(dst: *mut T, src: T)
-        where
-            T: Copy,
+            where
+                T: Copy,
         {
             *dst = src;
         }
 
         pub unsafe fn write_volatile<T>(dst: *mut T, src: T)
-        where
-            T: Copy,
+            where
+                T: Copy,
         {
             *dst = src;
         }
@@ -4019,17 +4105,17 @@ pub mod core {
 
     pub mod usize {
         #[cfg(any(
-            target_arch = "x86",
-            target_arch = "mips",
-            target_arch = "mips",
-            target_arch = "powerpc",
-            target_arch = "arm"
+        target_arch = "x86",
+        target_arch = "mips",
+        target_arch = "mips",
+        target_arch = "powerpc",
+        target_arch = "arm"
         ))]
         pub const MAX: usize = 4294967295;
         #[cfg(any(
-            target_arch = "x86_64",
-            target_arch = "powerpc64",
-            target_arch = "aarch64"
+        target_arch = "x86_64",
+        target_arch = "powerpc64",
+        target_arch = "aarch64"
         ))]
         pub const MAX: usize = 18446744073709551615;
         pub const MIN: usize = 0;
@@ -4134,19 +4220,19 @@ pub mod hashbrown {
             pub mod implement {
                 default_contract!(static_empty);
                 #[cfg(any(
-                    target_arch = "x86",
-                    target_arch = "mips",
-                    target_arch = "mips",
-                    target_arch = "powerpc",
-                    target_arch = "arm"
+                target_arch = "x86",
+                target_arch = "mips",
+                target_arch = "mips",
+                target_arch = "powerpc",
+                target_arch = "arm"
                 ))]
                 fn WIDTH() -> usize {
                     4
                 }
                 #[cfg(any(
-                    target_arch = "x86_64",
-                    target_arch = "powerpc64",
-                    target_arch = "aarch64"
+                target_arch = "x86_64",
+                target_arch = "powerpc64",
+                target_arch = "aarch64"
                 ))]
                 fn WIDTH() -> usize {
                     8
